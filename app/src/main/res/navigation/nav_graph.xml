@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="uz.unidev.contactauth.presentation.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_splashFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="uz.unidev.contactauth.presentation.auth.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="uz.unidev.contactauth.presentation.auth.register.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="uz.unidev.contactauth.presentation.main.contact.ContactFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_contact">
+        <action
+            android:id="@+id/action_mainFragment_to_fragmentAddContact"
+            app:destination="@id/fragmentAddContact" />
+        <action
+            android:id="@+id/action_mainFragment_to_fragmentUpdateContact"
+            app:destination="@id/fragmentUpdateContact" />
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAddContact"
+        android:name="uz.unidev.contactauth.presentation.main.add.AddContactFragment"
+        android:label="FragmentAddContact"
+        tools:layout="@layout/fragment_add_contact" />
+    <fragment
+        android:id="@+id/fragmentUpdateContact"
+        android:name="uz.unidev.contactauth.presentation.main.update.UpdateContactFragment"
+        android:label="FragmentUpdateContact"
+        tools:layout="@layout/fragment_update_contact">
+        <argument
+            android:name="contact"
+            app:argType="uz.unidev.contactauth.data.remote.response.ContactResponse" />
+    </fragment>
+</navigation>
