@@ -6,8 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import uz.unidev.contactauth.data.local.models.AuthData
-import uz.unidev.contactauth.domain.repositories.auth.AuthRepositoryImpl
+import uz.unidev.contactauth.data.models.AuthData
 import uz.unidev.contactauth.domain.usecases.auth.LoginUseCase
 import uz.unidev.contactauth.utils.UiState
 import uz.unidev.contactauth.utils.hasConnection

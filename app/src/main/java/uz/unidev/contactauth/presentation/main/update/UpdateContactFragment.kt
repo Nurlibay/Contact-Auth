@@ -12,7 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.tapadoo.alerter.Alerter
 import dagger.hilt.android.AndroidEntryPoint
 import uz.unidev.contactauth.R
-import uz.unidev.contactauth.data.remote.request.ContactRequest
+import uz.unidev.contactauth.data.source.remote.request.ContactRequest
 import uz.unidev.contactauth.databinding.FragmentUpdateContactBinding
 import uz.unidev.contactauth.utils.UiState
 

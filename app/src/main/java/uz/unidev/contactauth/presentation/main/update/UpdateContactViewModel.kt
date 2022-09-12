@@ -6,18 +6,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import uz.unidev.contactauth.data.remote.request.ContactRequest
-import uz.unidev.contactauth.domain.repositories.contact.ContactRepositoryImpl
+import uz.unidev.contactauth.data.source.remote.request.ContactRequest
 import uz.unidev.contactauth.domain.usecases.contact.UpdateContactUseCase
 import uz.unidev.contactauth.utils.UiState
 import uz.unidev.contactauth.utils.hasConnection
+import javax.inject.Inject
 
 /**
  *  Created by Nurlibay Koshkinbaev on 05/09/2022 11:23
  */
 
 @HiltViewModel
-class UpdateContactViewModel constructor(
+class UpdateContactViewModel @Inject constructor(
     private val updateContactUseCase: UpdateContactUseCase
 ): ViewModel() {
 

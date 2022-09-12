@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import uz.unidev.contactauth.data.remote.response.AuthResponse
-import uz.unidev.contactauth.data.remote.response.ContactResponse
+import uz.unidev.contactauth.data.source.remote.response.ContactResponse
 import uz.unidev.contactauth.databinding.ItemContactBinding
-import kotlin.math.abs
 
 class ContactAdapter :
     ListAdapter<ContactResponse, ContactAdapter.ContactViewHolder>(DiffUtilCallBack) {
@@ -52,13 +50,7 @@ class ContactAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder(
-            ItemContactBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        return ContactViewHolder(ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {

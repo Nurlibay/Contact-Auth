@@ -13,10 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.unidev.contactauth.R
-import uz.unidev.contactauth.data.local.models.AuthData
+import uz.unidev.contactauth.data.models.AuthData
 import uz.unidev.contactauth.databinding.FragmentLoginBinding
 import uz.unidev.contactauth.utils.UiState
-import kotlin.math.log
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -33,7 +32,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 viewModel.login(AuthData(etLogin.text.toString(), etPassword.text.toString()))
                 lifecycleScope.launch {
                     delay(5000)
-                    navigateMainFragment()
+                    navigateContactFragment()
                 }
             }
             btnRegister.setOnClickListener {
@@ -83,8 +82,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.progress.isVisible = state
     }
 
-    private fun navigateMainFragment() {
-        navController.navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment())
+    private fun navigateContactFragment() {
+        navController.navigate(LoginFragmentDirections.actionLoginFragmentToContactFragment())
     }
 
     private fun navigateRegisterFragment() {

@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.unidev.contactauth.R
-import uz.unidev.contactauth.data.local.models.AuthData
+import uz.unidev.contactauth.data.models.AuthData
 import uz.unidev.contactauth.databinding.FragmentRegisterBinding
 import uz.unidev.contactauth.utils.UiState
 

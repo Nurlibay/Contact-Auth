@@ -1,13 +1,15 @@
-package uz.unidev.contactauth.data.local
+package uz.unidev.contactauth.data.source.local
 
 import android.content.Context
+import android.content.SharedPreferences
 import uz.unidev.contactauth.utils.Constants.KEY_SIGNED_IN
 import uz.unidev.contactauth.utils.Constants.LOCAL
 import uz.unidev.contactauth.utils.Constants.NAME
 import uz.unidev.contactauth.utils.Constants.PASSWORD
 import uz.unidev.contactauth.utils.Constants.TOKEN
 
-class LocalDataSource private constructor(context: Context) {
+class SharePref private constructor(context: Context) {
+
     private val sharedPref = context.getSharedPreferences(LOCAL, Context.MODE_PRIVATE)
     private val editor = sharedPref.edit()
 
@@ -25,14 +27,16 @@ class LocalDataSource private constructor(context: Context) {
         set(value) = editor.putBoolean(KEY_SIGNED_IN, value).apply()
 
     companion object {
-        private var localDataSource: LocalDataSource? = null
-
-        fun init(context: Context) {
-            if (localDataSource == null) {
-                localDataSource = LocalDataSource(context)
+        private var mySharePref: SharePref? = null
+        lateinit var sharePref: SharePref
+        lateinit var editor: SharedPreferences.Editor
+        fun init(context: Context): SharePref? {
+            if(mySharePref == null){
+                mySharePref = SharePref(context)
             }
+            return mySharePref
         }
 
-        fun getInstance() = localDataSource!!
+        fun getInstance() = mySharePref!!
     }
 }

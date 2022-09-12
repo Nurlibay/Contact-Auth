@@ -9,23 +9,25 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.tapadoo.alerter.Alerter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.unidev.contactauth.R
-import uz.unidev.contactauth.data.local.LocalDataSource
-import uz.unidev.contactauth.data.local.models.AuthData
-import uz.unidev.contactauth.data.remote.response.ContactResponse
+import uz.unidev.contactauth.data.source.local.SharePref
+import uz.unidev.contactauth.data.models.AuthData
+import uz.unidev.contactauth.data.source.remote.response.ContactResponse
 import uz.unidev.contactauth.databinding.FragmentContactBinding
 import uz.unidev.contactauth.utils.UiState
 
+@AndroidEntryPoint
 class ContactFragment : Fragment(R.layout.fragment_contact) {
 
-    private val localStorage = LocalDataSource.getInstance()
     private val navController by lazy { findNavController() }
     private val adapter = ContactAdapter()
-    private val localDataSource = LocalDataSource.getInstance()
     private val binding: FragmentContactBinding by viewBinding()
     private val viewModel: ContactViewModel by viewModels()
+
+    private val sharePref = SharePref.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,9 +43,9 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
 
             /** logout event */
             ivLogout.setOnClickListener {
-                viewModel.logout(AuthData(localDataSource.getName()!!, localDataSource.getPassword()!!))
+                viewModel.logout(AuthData(sharePref.getName()!!, sharePref.getPassword()!!))
                 setupObserverLogoutEvent()
-                localStorage.saveToken("")
+                sharePref.saveToken("")
                 lifecycleScope.launch {
                     delay(2000)
                     navigateLoginFragment()
@@ -52,9 +54,9 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
 
             /** unregister event */
             ivUnregister.setOnClickListener {
-                viewModel.unregister(AuthData(localDataSource.getName()!!, localDataSource.getPassword()!!))
+                viewModel.unregister(AuthData(sharePref.getName()!!, sharePref.getPassword()!!))
                 setupObserverUnregisterEvent()
-                localStorage.saveToken("")
+                sharePref.saveToken("")
                 lifecycleScope.launch {
                     delay(2000)
                     navigateLoginFragment()
@@ -84,7 +86,7 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
     }
 
     private fun signedAccount() {
-        localStorage.isSigned = true
+        sharePref.isSigned = true
     }
 
     private fun setupObserverLogoutEvent() {
@@ -229,14 +231,14 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
     }
 
     private fun navigateLoginFragment() {
-        navController.navigate(ContactFragmentDirections.actionMainFragmentToLoginFragment())
+        navController.navigate(ContactFragmentDirections.actionContactFragmentToLoginFragment())
     }
 
     private fun navigateAddContactFragment() {
-        navController.navigate(ContactFragmentDirections.actionMainFragmentToFragmentAddContact())
+        navController.navigate(ContactFragmentDirections.actionContactFragmentToAddContactFragment())
     }
 
     private fun navigateUpdateFragment(it: ContactResponse) {
-        navController.navigate(ContactFragmentDirections.actionMainFragmentToFragmentUpdateContact(it))
+        navController.navigate(ContactFragmentDirections.actionContactFragmentToUpdateContactFragment(it))
     }
 }

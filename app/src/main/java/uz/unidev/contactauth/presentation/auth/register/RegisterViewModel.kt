@@ -2,20 +2,22 @@ package uz.unidev.contactauth.presentation.auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import uz.unidev.contactauth.data.local.models.AuthData
-import uz.unidev.contactauth.domain.repositories.auth.AuthRepositoryImpl
+import uz.unidev.contactauth.data.models.AuthData
 import uz.unidev.contactauth.domain.usecases.auth.RegisterUseCase
 import uz.unidev.contactauth.utils.UiState
 import uz.unidev.contactauth.utils.hasConnection
+import javax.inject.Inject
 
 /**
  *  Created by Nurlibay Koshkinbaev on 05/09/2022 11:13
  */
 
-class RegisterViewModel constructor(
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase
 ): ViewModel() {
 

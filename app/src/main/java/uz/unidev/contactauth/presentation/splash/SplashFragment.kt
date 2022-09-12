@@ -8,28 +8,28 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.unidev.contactauth.R
-import uz.unidev.contactauth.data.local.LocalDataSource
+import uz.unidev.contactauth.data.source.local.SharePref
 
 @AndroidEntryPoint
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     private val navController by lazy { findNavController() }
-    private val localStorage = LocalDataSource.getInstance()
+    private val sharePref = SharePref.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (localStorage.isSigned) {
+        if (sharePref.isSigned) {
             lifecycleScope.launch {
                 delay(2000)
-                navigateMainFragment()
+                navigateContactFragment()
             }
         } else {
             navigateLoginFragment()
         }
     }
 
-    private fun navigateMainFragment() {
-        navController.navigate(SplashFragmentDirections.actionSplashFragmentToMainFragment())
+    private fun navigateContactFragment() {
+        navController.navigate(SplashFragmentDirections.actionSplashFragmentToContactFragment())
     }
 
     private fun navigateLoginFragment() {

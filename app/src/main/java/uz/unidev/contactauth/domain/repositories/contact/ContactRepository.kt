@@ -1,8 +1,8 @@
 package uz.unidev.contactauth.domain.repositories.contact
 
 import kotlinx.coroutines.flow.Flow
-import uz.unidev.contactauth.data.remote.request.ContactRequest
-import uz.unidev.contactauth.data.remote.response.ContactResponse
+import uz.unidev.contactauth.data.source.remote.request.ContactRequest
+import uz.unidev.contactauth.data.source.remote.response.ContactResponse
 import uz.unidev.contactauth.utils.UiState
 
 interface ContactRepository {

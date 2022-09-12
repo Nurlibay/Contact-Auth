@@ -1,12 +1,10 @@
-package uz.unidev.contactauth.data.remote.api
+package uz.unidev.contactauth.data.source.remote.api
 
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
-import uz.unidev.contactauth.data.remote.request.AuthRequest
-import uz.unidev.contactauth.data.remote.request.ContactRequest
-import uz.unidev.contactauth.data.remote.response.BaseResponse
-import uz.unidev.contactauth.data.remote.response.ContactResponse
+import uz.unidev.contactauth.data.source.remote.request.ContactRequest
+import uz.unidev.contactauth.data.source.remote.response.BaseResponse
+import uz.unidev.contactauth.data.source.remote.response.ContactResponse
 
 interface ContactApi {
 

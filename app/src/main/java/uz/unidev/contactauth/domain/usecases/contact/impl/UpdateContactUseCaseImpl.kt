@@ -1,7 +1,7 @@
 package uz.unidev.contactauth.domain.usecases.contact.impl
 
 import kotlinx.coroutines.flow.Flow
-import uz.unidev.contactauth.data.remote.request.ContactRequest
+import uz.unidev.contactauth.data.source.remote.request.ContactRequest
 import uz.unidev.contactauth.domain.repositories.contact.ContactRepository
 import uz.unidev.contactauth.domain.usecases.contact.UpdateContactUseCase
 import uz.unidev.contactauth.utils.UiState

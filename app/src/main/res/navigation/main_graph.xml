@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/main_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
@@ -11,18 +11,11 @@
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            android:id="@+id/action_splashFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
         <action
-            android:id="@+id/action_splashFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -34,12 +27,8 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"
-            />
+            android:id="@+id/action_loginFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
     </fragment>
 
     <fragment
@@ -53,35 +42,35 @@
     </fragment>
 
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/contactFragment"
         android:name="uz.unidev.contactauth.presentation.main.contact.ContactFragment"
-        android:label="MainFragment"
+        android:label="ContactFragment"
         tools:layout="@layout/fragment_contact">
         <action
-            android:id="@+id/action_mainFragment_to_fragmentAddContact"
-            app:destination="@id/fragmentAddContact" />
+            android:id="@+id/action_contactFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_fragmentUpdateContact"
-            app:destination="@id/fragmentUpdateContact" />
+            android:id="@+id/action_contactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_contactFragment_to_updateContactFragment"
+            app:destination="@id/updateContactFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/fragmentAddContact"
+        android:id="@+id/addContactFragment"
         android:name="uz.unidev.contactauth.presentation.main.add.AddContactFragment"
-        android:label="FragmentAddContact"
+        android:label="AddContactFragment"
         tools:layout="@layout/fragment_add_contact" />
+
     <fragment
-        android:id="@+id/fragmentUpdateContact"
+        android:id="@+id/updateContactFragment"
         android:name="uz.unidev.contactauth.presentation.main.update.UpdateContactFragment"
-        android:label="FragmentUpdateContact"
+        android:label="UpdateContactFragment"
         tools:layout="@layout/fragment_update_contact">
         <argument
             android:name="contact"
-            app:argType="uz.unidev.contactauth.data.remote.response.ContactResponse" />
+            app:argType="uz.unidev.contactauth.data.source.remote.response.ContactResponse" />
     </fragment>
+
 </navigation>

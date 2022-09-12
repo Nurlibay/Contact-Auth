@@ -6,21 +6,23 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import uz.unidev.contactauth.data.local.models.AuthData
-import uz.unidev.contactauth.data.remote.response.ContactResponse
-import uz.unidev.contactauth.domain.repositories.auth.AuthRepositoryImpl
-import uz.unidev.contactauth.domain.repositories.contact.ContactRepositoryImpl
+import uz.unidev.contactauth.data.models.AuthData
+import uz.unidev.contactauth.data.source.remote.response.ContactResponse
+import uz.unidev.contactauth.domain.usecases.auth.LogoutUseCase
+import uz.unidev.contactauth.domain.usecases.auth.UnregisterUseCase
+import uz.unidev.contactauth.domain.usecases.contact.DeleteContactUseCase
 import uz.unidev.contactauth.domain.usecases.contact.GetAllContactsUseCase
 import uz.unidev.contactauth.utils.UiState
 import uz.unidev.contactauth.utils.hasConnection
+import javax.inject.Inject
 
 @HiltViewModel
-class ContactViewModel constructor(
-    private val getAllContactsUseCase: GetAllContactsUseCase
-): ViewModel() {
-
-    private val contactRepository = ContactRepositoryImpl.getInstance()
-    private val authRepository = AuthRepositoryImpl.getInstance()
+class ContactViewModel @Inject constructor(
+    private val getAllContactsUseCase: GetAllContactsUseCase,
+    private val logoutUseCase: LogoutUseCase,
+    private val unregisterUseCase: UnregisterUseCase,
+    private val deleteContactUseCase: DeleteContactUseCase
+) : ViewModel() {
 
     private val _contacts = MutableStateFlow<UiState<List<ContactResponse>>>(UiState.Empty)
     val contacts: StateFlow<UiState<List<ContactResponse>>> = _contacts
@@ -56,7 +58,7 @@ class ContactViewModel constructor(
         }
         viewModelScope.launch {
             _logout.value = UiState.Loading
-            authRepository.logout(authData).collect {
+            logoutUseCase.logout(authData).collect {
                 when (it) {
                     is UiState.Success -> {
                         val result = it.data
@@ -80,7 +82,7 @@ class ContactViewModel constructor(
         }
         viewModelScope.launch {
             _unregister.value = UiState.Loading
-            authRepository.unregister(authData).collect {
+            unregisterUseCase.unregister(authData).collect {
                 when (it) {
                     is UiState.Success -> {
                         val result = it.data
@@ -104,7 +106,7 @@ class ContactViewModel constructor(
         }
         viewModelScope.launch {
             _deleteContact.value = UiState.Loading
-            contactRepository.deleteContact(contactResponse).collect {
+            deleteContactUseCase.deleteContact(contactResponse).collect {
                 when (it) {
                     is UiState.Success -> {
                         val result = it.data

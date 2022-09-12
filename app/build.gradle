@@ -79,6 +79,7 @@ dependencies {
 
     /** Retrofit */
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
 
     /**  Logging interceptor */
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3'
@@ -108,5 +109,10 @@ dependencies {
 
     /** Dagger Hilt */
     implementation "com.google.dagger:hilt-android:2.39.1"
-    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    kapt "com.google.dagger:hilt-compiler:2.40"
+    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
+
+    /** kotlinx.coroutines */
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 }

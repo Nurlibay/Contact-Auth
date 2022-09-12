@@ -1,7 +1,7 @@
 package uz.unidev.contactauth.domain.repositories.auth
 
 import kotlinx.coroutines.flow.Flow
-import uz.unidev.contactauth.data.local.models.AuthData
+import uz.unidev.contactauth.data.models.AuthData
 import uz.unidev.contactauth.utils.UiState
 
 interface AuthRepository {
